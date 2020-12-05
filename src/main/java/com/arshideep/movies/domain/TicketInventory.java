@@ -2,8 +2,9 @@ package com.arshideep.movies.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+import org.apache.catalina.LifecycleState;
 
 import javax.persistence.*;
 
@@ -12,14 +13,15 @@ import javax.persistence.*;
 @Table
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Movie {
-    //MovieId, Movie name, movie language, movie genre, duration.
+@ToString
+public class TicketInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NonNull private String movieName;
-    @NonNull private String movieLanguage;
-    private String genre;
-    @NonNull private Integer duration;
+
+    @OneToOne
+    private Movie movie;
+
+    private Long inventoryCount;
 
 }
